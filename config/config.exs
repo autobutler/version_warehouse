@@ -5,6 +5,9 @@
 # is restricted to this project.
 use Mix.Config
 
+config :version_warehouse,
+  ecto_repos: [VersionWarehouse.Repo]
+
 # Configures the endpoint
 config :version_warehouse, VersionWarehouse.Endpoint,
   url: [host: "localhost"],

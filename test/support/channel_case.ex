@@ -24,15 +24,16 @@ defmodule VersionWarehouse.ChannelCase do
       import Ecto.Model
       import Ecto.Query, only: [from: 2]
 
-
       # The default endpoint for testing
       @endpoint VersionWarehouse.Endpoint
     end
   end
 
   setup tags do
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(VersionWarehouse.Repo)
+
     unless tags[:async] do
-      Ecto.Adapters.SQL.restart_test_transaction(VersionWarehouse.Repo, [])
+      Ecto.Adapters.SQL.Sandbox.mode(VersionWarehouse.Repo, {:shared, self()})
     end
 
     :ok

@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "deploy": "brunch build --production"
+  },
   "repository": {
   },
   "dependencies": {

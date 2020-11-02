@@ -14,9 +14,10 @@ defmodule VersionWarehouse.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: VersionWarehouse.PubSub},
       # Start the Endpoint (http/https)
-      VersionWarehouseWeb.Endpoint
+      VersionWarehouseWeb.Endpoint,
       # Start a worker by calling: VersionWarehouse.Worker.start_link(arg)
       # {VersionWarehouse.Worker, arg}
+      # {VersionWarehouse.Versions.PurgeWorker, []}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

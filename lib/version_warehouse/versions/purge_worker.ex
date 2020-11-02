@@ -6,11 +6,18 @@ defmodule VersionWarehouse.Versions.PurgeWorker do
 
   alias VersionWarehouse.Versions
 
-  def start_link do
-    Agent.start_link(run(1))
+  def start_link(_) do
+    Agent.start_link(&run/0, [])
   end
 
   def run(start_id \\ 1) do
+    start_id =
+      if start_id == 1 do
+        VersionWarehouse.Versions.get_first_id
+      else
+        start_id
+      end
+
     ids = (start_id..(start_id + @batch_size)) |> Enum.to_list()
     Versions.purge_versions_by_ids(ids, @max_id)
 

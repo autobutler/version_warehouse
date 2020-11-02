@@ -34,6 +34,10 @@ defmodule VersionWarehouse.Versions do
     |> Repo.delete_all()
   end
 
+  def get_first_id do
+    Repo.one(from v in Version, select: min(v.id))
+  end
+
   @doc """
   Gets a single version.
 

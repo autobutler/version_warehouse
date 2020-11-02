@@ -17,7 +17,7 @@ defmodule VersionWarehouse.Application do
       VersionWarehouseWeb.Endpoint,
       # Start a worker by calling: VersionWarehouse.Worker.start_link(arg)
       # {VersionWarehouse.Worker, arg}
-      # {VersionWarehouse.Versions.PurgeWorker, []}
+      {VersionWarehouse.Versions.PurgeWorker, []}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

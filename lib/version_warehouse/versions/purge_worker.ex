@@ -15,12 +15,12 @@ defmodule VersionWarehouse.Versions.PurgeWorker do
   end
 
   def run(start_id \\ 1) do
-    start_id =
-      if start_id == 1 do
-        VersionWarehouse.Versions.get_first_id || 1
-      else
-        start_id
-      end
+    # start_id =
+    #   if start_id == 1 do
+    #     VersionWarehouse.Versions.get_first_id || 1
+    #   else
+    #     start_id
+    #   end
 
     ids = (start_id..(start_id + @batch_size)) |> Enum.to_list()
     Versions.purge_versions_by_ids(ids, @max_id)

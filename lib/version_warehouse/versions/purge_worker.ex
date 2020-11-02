@@ -7,13 +7,17 @@ defmodule VersionWarehouse.Versions.PurgeWorker do
   alias VersionWarehouse.Versions
 
   def start_link(_) do
-    Agent.start_link(&run/0, [])
+    if Mix.env() == :prod do
+      Agent.start_link(&run/0, [])
+    else
+      Agent.start_link(fn -> :ok end, [])
+    end
   end
 
   def run(start_id \\ 1) do
     start_id =
       if start_id == 1 do
-        VersionWarehouse.Versions.get_first_id
+        VersionWarehouse.Versions.get_first_id || 1
       else
         start_id
       end

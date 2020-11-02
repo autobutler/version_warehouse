@@ -23,7 +23,7 @@ defmodule VersionWarehouseWeb.Router do
   # Other scopes may use custom stacks.
   scope "/api", VersionWarehouseWeb do
     pipe_through :api
-    resources "/versions", VersionController, only: [:index, :show, :create]
+    resources "/versions", VersionController, only: [:index, :show, :create, :delete]
   end
 
   # Enables LiveDashboard only for development

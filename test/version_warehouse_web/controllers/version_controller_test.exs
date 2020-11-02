@@ -77,4 +77,12 @@ defmodule VersionWarehouseWeb.VersionControllerTest do
       assert json_response(conn, 422)["errors"] != %{}
     end
   end
+
+  describe "delete version" do
+    test "deletes chosen resource", %{conn: conn} do
+      version = fixture(:version)
+      conn = delete(conn, Routes.version_path(conn, :delete, version))
+      assert response(conn, 204)
+    end
+  end
 end

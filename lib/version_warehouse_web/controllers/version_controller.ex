@@ -24,4 +24,12 @@ defmodule VersionWarehouseWeb.VersionController do
     version = Versions.get_version!(id)
     render(conn, "show.json", version: version)
   end
+
+  def delete(conn, %{"id" => id}) do
+    version = Versions.get_version!(id)
+
+    with {:ok, %Version{}} <- Versions.delete_version(version) do
+      send_resp(conn, :no_content, "")
+    end
+  end
 end
